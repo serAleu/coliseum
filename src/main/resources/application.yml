@@ -1,0 +1,16 @@
+server:
+  port : 8181
+
+gladiators:
+  hoplomachus:
+    health: 100
+    armour: 50
+    attack: 10
+    speed: 8
+    luck: 7
+  retiarius:
+    health: 100
+    armour: 50
+    attack: 10
+    speed: 8
+    luck: 7
