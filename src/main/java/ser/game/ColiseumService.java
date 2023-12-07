@@ -9,8 +9,7 @@ public class ColiseumService {
         System.out.println("Welcome to the Coliseum game!");
     }
 
-    public void enterYourName() {
-        System.out.println("Enter your name: ");
+    public void enterNickName() {
+        System.out.println("Write your nickname");
     }
-
 }
