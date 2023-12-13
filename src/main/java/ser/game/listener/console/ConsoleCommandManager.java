@@ -1,5 +1,6 @@
 package ser.game.listener.console;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ser.game.listener.BaseCommandManager;
@@ -7,10 +8,10 @@ import ser.game.listener.BaseCommandManager;
 import java.util.Scanner;
 
 @Component
+@AllArgsConstructor
 public class ConsoleCommandManager extends BaseCommandManager {
 
-    @Autowired
-    private Scanner scanner;
+    private final Scanner scanner;
 
     @Override
     public void listen() {

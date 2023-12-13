@@ -1,29 +1,27 @@
 package ser.game.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ProjectConfig {
 
-    @Value("${gladiators.hoplomachus.health}")
-    private int gladiatorsHoplomachusHealth;
-    @Value("${gladiators.hoplomachus.armour}")
-    private int gladiatorsHoplomachusArmour;
-    @Value("${gladiators.hoplomachus.attack}")
-    private int gladiatorsHoplomachusAttack;
-    @Value("${gladiators.hoplomachus.speed}")
-    private int gladiatorsHoplomachusSpeed;
-    @Value("${gladiators.hoplomachus.luck}")
-    private int gladiatorsHoplomachusLuck;
-    @Value("${gladiators.retiarius.health}")
-    private int gladiatorsRetiariusHealth;
-    @Value("${gladiators.retiarius.armour}")
-    private int gladiatorsRetiariusArmour;
-    @Value("${gladiators.retiarius.attack}")
-    private int gladiatorsRetiariusAttack;
-    @Value("${gladiators.retiarius.speed}")
-    private int gladiatorsRetiariusSpeed;
-    @Value("${gladiators.retiarius.luck}")
-    private int gladiatorsRetiariusLuck;
+    @Bean
+//    @Primary
+    public ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        mapper.enable(JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS.mappedFeature());
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, true);
+        return mapper;
+    }
 }
