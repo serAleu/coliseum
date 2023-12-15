@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 @Configuration
 @ComponentScan("ser.game.config")
-public class CommandMangerConfig {
+public class ConsoleCommandConfig {
 
     @Bean
     public Scanner scanner(){
