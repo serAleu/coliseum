@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ser.game.user.User;
 
 import java.util.Map;
 
@@ -22,14 +23,29 @@ public class WebCommandController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> start(@RequestBody String string) {
-        log.info("Run DMS requestId ");
         webCommandService.listen();
         return ResponseEntity.ok().body("Please, use get request");
     }
 
     @GetMapping("")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
+    public String greeting(Model model) {
+        User user = new User()
+                .setNickName("serserser");
+        model.addAttribute("user", user);
         return "greeting";
     }
+
+    @PostMapping("/register")
+    public String register(@RequestParam(name="nickname", required=false, defaultValue="Sergei") String nickname, Model model) {
+        User user = new User().setNickName(nickname);
+        model.addAttribute("user", user);
+//        model.addAttribute("nickname", nickname);
+        return "greeting";
+    }
+
+//    @GetMapping("")
+//    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "greeting";
+//    }
 }

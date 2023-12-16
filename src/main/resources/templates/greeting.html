@@ -2,13 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Coliseum</title>
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+    <title>Coliseum Game</title>
 </head>
 <body>
-    <h1>Hello!</h1>
-    <div>
-        <p>Enter your name:<span th:text = "${name}"/></p>
+    <div align=center>
+        <h1>User Registration</h1>
+        <div>
+            <form th:method="POST"
+                   th:action="@{/coliseum/game/register}"
+                   th:object="${user}">
+
+                <label for="nickName">Enter your nickname: </label>
+                <input type="text" th:field="*{nickName}" id="nickName"/>
+
+                <br>
+
+                <input type="submit" value="Add Person">
+            </form>
+        </div>
+        <form action="#" th:action="@{/coliseum/game}" th:object="${user}">
+            <label>Enter your nickname:</label>
+<!--            <input type="text" th:field="*{nickName}">-->
+        </form>
+<!--        <form action="#" th:action="@{/coliseum/game/register}" th:object="${user}">-->
+<!--            <button type="submit">Register</button>-->
+<!--        </form>-->
     </div>
 </body>
 </html>
